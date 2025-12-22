@@ -1,0 +1,36 @@
+# =========================
+# BACKEND - SPRING BOOT
+# =========================
+portal-backend/target/
+portal-backend/build/
+portal-backend/.gradle/
+portal-backend/.mvn/
+portal-backend/logs/
+
+# =========================
+# FRONTEND - ANGULAR
+# =========================
+portal-frontend/node_modules/
+portal-frontend/dist/
+portal-frontend/.angular/
+portal-frontend/.cache/
+
+# =========================
+# IDEs
+# =========================
+.idea/
+.vscode/
+*.iml
+
+# =========================
+# ENV / SECRETS
+# =========================
+*.env
+*.env.local
+application-local.yml
+application-local.yaml
+
+# =========================
+# OS
+# ===========
+
