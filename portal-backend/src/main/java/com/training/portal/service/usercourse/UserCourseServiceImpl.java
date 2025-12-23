@@ -10,12 +10,15 @@ import com.training.portal.persistence.repository.CourseRepository;
 import com.training.portal.persistence.repository.UserCoursesRepository;
 import com.training.portal.persistence.repository.UserRepository;
 import com.training.portal.util.Constants;
+import jakarta.transaction.Transactional;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
+@Log4j2
 public class UserCourseServiceImpl implements UserCourseService{
 
     @Autowired
@@ -31,12 +34,15 @@ public class UserCourseServiceImpl implements UserCourseService{
     private UserCourseMapper userCourseMapper;
 
     @Override
+    @Transactional
     public UserCourseModel create(UserCourseRequest userCourseRequest) {
+
+        log.info("inicio servicio asociacion de curso a usuario");
 
         Optional<UserCoursesEntity> entity = findByUserIdAndCourseId(userCourseRequest.getUserId(), userCourseRequest.getCourseId());
 
         if(entity.isPresent()){
-            throw new IllegalArgumentException("Curso ya asociado al usuario");
+            throw new IllegalStateException("Curso ya asociado al usuario");
         }
 
         UserEntity userEntity = userRepository.findById(userCourseRequest.getUserId()).
@@ -56,7 +62,9 @@ public class UserCourseServiceImpl implements UserCourseService{
     }
 
     @Override
+    @Transactional
     public UserCourseModel update(UserCourseRequest userCourseRequest) {
+        log.info("inicio servicio actuallizacion de estado de curso por usuario");
         UserCoursesEntity userCoursesEntity = findByUserIdAndCourseId(userCourseRequest.getUserId(), userCourseRequest.getCourseId())
                 .orElseThrow(()-> new RuntimeException("course or user not found"));
 
@@ -75,6 +83,4 @@ public class UserCourseServiceImpl implements UserCourseService{
             default -> throw new IllegalStateException("invalid Status: " + statusId);
         };
     }
-
-
 }
