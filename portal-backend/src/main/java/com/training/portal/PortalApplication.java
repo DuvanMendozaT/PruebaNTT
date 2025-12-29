@@ -34,7 +34,7 @@ public class PortalApplication {
 
 
 	@Bean
-	CommandLineRunner initCourseDatabase(UserRepository userRepository) {
+	CommandLineRunner initUserDatabase(UserRepository userRepository) {
 		return args -> {
 			if (userRepository.count() == 0) {
 				//fullstack
