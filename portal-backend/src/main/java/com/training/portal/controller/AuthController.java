@@ -1,19 +1,19 @@
 package com.training.portal.controller;
 
-import com.training.portal.dto.rest.LoginRequest;
-import com.training.portal.dto.rest.LoginResponse;
-import com.training.portal.dto.rest.RegisterRequest;
-import com.training.portal.dto.rest.SimpleResponse;
+import com.training.portal.controller.doc.AuthControllerDoc;
+import com.training.portal.model.UserModel;
+import com.training.portal.model.rest.LoginRequest;
+import com.training.portal.model.rest.LoginResponse;
+import com.training.portal.model.rest.RegisterRequest;
+import com.training.portal.model.rest.SimpleResponse;
 import com.training.portal.service.user.UserService;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.Schema;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Tag(
         name = "Autenticación",
@@ -21,48 +21,27 @@ import org.springframework.web.bind.annotation.*;
 )
 @RestController
 @RequestMapping("/auth")
-public class AuthController {
+public class AuthController implements AuthControllerDoc {
 
     @Autowired
     private UserService userService;
 
-    @Operation(
-            summary = "Iniciar sesión",
-            description = "Autentica un usuario y retorna la información necesaria para la sesión"
-    )
-    @ApiResponses(value = {
-            @ApiResponse(
-                    responseCode = "200",
-                    description = "Autenticación exitosa",
-                    content = @Content(schema = @Schema(implementation = LoginResponse.class))
-            ),
-            @ApiResponse(responseCode = "401", description = "Credenciales inválidas"),
-            @ApiResponse(responseCode = "500", description = "Error interno del servidor")
-    })
     @PostMapping("/login")
-    public ResponseEntity<LoginResponse> login(
-            @RequestBody LoginRequest loginRequest
-    ) throws IllegalAccessException {
+    public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) {
         return ResponseEntity.ok(userService.login(loginRequest));
     }
-
-    @Operation(
-            summary = "Registrar usuario",
-            description = "Registra un nuevo usuario en el sistema"
-    )
-    @ApiResponses(value = {
-            @ApiResponse(
-                    responseCode = "200",
-                    description = "Usuario registrado correctamente",
-                    content = @Content(schema = @Schema(implementation = SimpleResponse.class))
-            ),
-            @ApiResponse(responseCode = "400", description = "Datos inválidos"),
-            @ApiResponse(responseCode = "500", description = "Error interno del servidor")
-    })
     @PostMapping("/register")
-    public ResponseEntity<SimpleResponse> register(
-            @RequestBody RegisterRequest registerRequest
-    ) {
+    public ResponseEntity<SimpleResponse> register(@RequestBody RegisterRequest registerRequest) {
         return ResponseEntity.ok(userService.register(registerRequest));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<UserModel> deleteById(@Parameter(description = "ID del user", example = "10") @PathVariable Long id) {
+        return ResponseEntity.ok(userService.deleteById(id));
+    }
+
+    @GetMapping()
+    public ResponseEntity<List<UserModel>> listCustomer() {
+        return ResponseEntity.ok(userService.findAll());
     }
 }

@@ -25,10 +25,4 @@ public class CourseEntity {
 
     private int duration;
 
-    @Column(name = "image_url")
-    private String imageUrl;
-
-    @Column(name = "badge_name")
-    private String badgeName;
-
 }

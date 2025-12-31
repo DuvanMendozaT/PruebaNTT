@@ -1,5 +1,5 @@
 package com.training.portal.controller.handler;
-import com.training.portal.dto.rest.SimpleResponse;
+import com.training.portal.model.rest.SimpleResponse;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

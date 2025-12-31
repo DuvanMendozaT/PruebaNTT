@@ -1,6 +1,6 @@
 package com.training.portal.persistence.mapper;
 
-import com.training.portal.dto.CourseModel;
+import com.training.portal.model.CourseModel;
 import com.training.portal.persistence.entity.CourseEntity;
 import org.mapstruct.Mapper;
 

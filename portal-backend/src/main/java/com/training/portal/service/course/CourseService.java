@@ -1,8 +1,8 @@
 package com.training.portal.service.course;
 
-import com.training.portal.dto.CourseModel;
-import com.training.portal.dto.rest.CourseRequest;
-import com.training.portal.dto.rest.UserCourseResponse;
+import com.training.portal.model.CourseModel;
+import com.training.portal.model.rest.CourseRequest;
+import com.training.portal.model.rest.UserCourseResponse;
 
 import java.util.List;
 
@@ -18,4 +18,6 @@ public interface CourseService {
     List<CourseModel> findByModule(String module);
 
     List<UserCourseResponse> findByUserId(Long id);
+
+    CourseModel deleteById(Long id);
 }

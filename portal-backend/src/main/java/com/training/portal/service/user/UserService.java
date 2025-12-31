@@ -1,12 +1,19 @@
 package com.training.portal.service.user;
 
-import com.training.portal.dto.rest.LoginRequest;
-import com.training.portal.dto.rest.LoginResponse;
-import com.training.portal.dto.rest.RegisterRequest;
-import com.training.portal.dto.rest.SimpleResponse;
+import com.training.portal.model.UserModel;
+import com.training.portal.model.rest.LoginRequest;
+import com.training.portal.model.rest.LoginResponse;
+import com.training.portal.model.rest.RegisterRequest;
+import com.training.portal.model.rest.SimpleResponse;
+
+import java.util.List;
 
 public interface UserService {
-    LoginResponse login(LoginRequest loginRequest) throws IllegalAccessException;
+    String login(LoginRequest loginRequest);
 
     SimpleResponse register(RegisterRequest registerRequest);
+
+    UserModel deleteById(Long id);
+
+    List<UserModel> findAll();
 }

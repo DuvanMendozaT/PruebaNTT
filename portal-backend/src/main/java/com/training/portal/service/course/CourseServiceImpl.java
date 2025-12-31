@@ -1,8 +1,9 @@
 package com.training.portal.service.course;
 
-import com.training.portal.dto.CourseModel;
-import com.training.portal.dto.rest.CourseRequest;
-import com.training.portal.dto.rest.UserCourseResponse;
+import com.training.portal.model.CourseModel;
+import com.training.portal.model.rest.CourseRequest;
+import com.training.portal.model.rest.UserCourseResponse;
+import com.training.portal.persistence.entity.CourseEntity;
 import com.training.portal.persistence.mapper.CourseMapper;
 import com.training.portal.persistence.repository.CourseRepository;
 import com.training.portal.persistence.repository.UserCoursesRepository;
@@ -80,5 +81,15 @@ public class CourseServiceImpl implements CourseService {
     public List<UserCourseResponse> findByUserId(Long id) {
         log.info("inicio servicio consulta de cursos por estudiante");
         return userCoursesRepository.findCoursesInfoByUserId(id);
+    }
+
+    @Override
+    public CourseModel deleteById(Long id) {
+        CourseEntity existing = courseRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+
+        courseRepository.deleteById(id);
+
+        return courseMapper.toModel(existing);
     }
 }

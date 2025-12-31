@@ -1,7 +1,6 @@
 package com.training.portal.persistence.repository;
 
-import com.training.portal.dto.rest.UserCourseResponse;
-import com.training.portal.persistence.entity.CourseEntity;
+import com.training.portal.model.rest.UserCourseResponse;
 import com.training.portal.persistence.entity.UserCoursesEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

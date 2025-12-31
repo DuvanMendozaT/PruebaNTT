@@ -1,7 +1,7 @@
 package com.training.portal.service.usercourse;
 
-import com.training.portal.dto.UserCourseModel;
-import com.training.portal.dto.rest.UserCourseRequest;
+import com.training.portal.model.UserCourseModel;
+import com.training.portal.model.rest.UserCourseRequest;
 
 public interface UserCourseService {
 

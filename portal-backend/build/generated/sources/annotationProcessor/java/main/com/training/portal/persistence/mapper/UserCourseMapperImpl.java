@@ -1,6 +1,6 @@
 package com.training.portal.persistence.mapper;
 
-import com.training.portal.dto.UserCourseModel;
+import com.training.portal.model.UserCourseModel;
 import com.training.portal.persistence.entity.CourseEntity;
 import com.training.portal.persistence.entity.UserCoursesEntity;
 import com.training.portal.persistence.entity.UserEntity;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-12-22T23:23:51-0500",
+    date = "2025-12-29T16:33:54-0500",
     comments = "version: 1.5.5.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-9.2.1.jar, environment: Java 17.0.8 (Oracle Corporation)"
 )
 @Component
